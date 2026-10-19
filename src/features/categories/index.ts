@@ -1,1 +1,4 @@
 export { CategoriesPage } from './pages/CategoriesPage'
+export { CategoryCreatePage } from './pages/CategoryCreatePage'
+export { CategoryEditPage } from './pages/CategoryEditPage'
+export type { Category } from './types'
