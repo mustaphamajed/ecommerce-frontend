@@ -6,7 +6,7 @@ export function NotFoundPage() {
       <p className="text-sm font-semibold text-indigo-600">404</p>
       <h1 className="mt-2 text-2xl font-semibold">Page not found</h1>
       <Link to="/" className="mt-6 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-        Back to dashboard
+        Back to store
       </Link>
     </main>
   )

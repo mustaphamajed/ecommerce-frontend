@@ -8,7 +8,7 @@ export type NavigationItem = {
 }
 
 export const navigationItems: NavigationItem[] = [
-  { to: '/', label: 'Dashboard', end: true },
-  { to: '/categories', label: 'Categories', permission: 'product:read' },
-  { to: '/users', label: 'Users', permission: 'user:read' },
+  { to: '/admin', label: 'Dashboard', end: true },
+  { to: '/admin/categories', label: 'Categories', permission: 'product:read' },
+  { to: '/admin/users', label: 'Users', permission: 'user:read' },
 ]

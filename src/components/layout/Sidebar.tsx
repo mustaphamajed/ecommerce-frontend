@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { useAuth } from '@/features/auth'
 import { navigationItems } from './navigation'
 import { SidebarLink } from './SidebarLink'
@@ -16,6 +17,9 @@ export function Sidebar() {
           <SidebarLink key={item.to} to={item.to} label={item.label} end={item.end} />
         ))}
       </nav>
+      <Link to="/" className="border-t border-slate-200 px-6 py-4 text-sm text-slate-500 hover:text-slate-900">
+        ← Back to store
+      </Link>
     </aside>
   )
 }
