@@ -4,12 +4,14 @@ import { cn } from '@/lib/cn'
 type TextFieldProps = ComponentProps<'input'> & {
   label: string
   error?: string
+  hint?: string
 }
 
-export function TextField({ label, error, id, className, ...props }: TextFieldProps) {
+export function TextField({ label, error, hint, id, className, ...props }: TextFieldProps) {
   const generatedId = useId()
   const inputId = id ?? generatedId
-  const errorId = `${inputId}-error`
+  const messageId = `${inputId}-message`
+  const message = error ?? hint
 
   return (
     <div className="flex flex-col gap-1.5">
@@ -19,7 +21,7 @@ export function TextField({ label, error, id, className, ...props }: TextFieldPr
       <input
         id={inputId}
         aria-invalid={error ? true : undefined}
-        aria-describedby={error ? errorId : undefined}
+        aria-describedby={message ? messageId : undefined}
         className={cn(
           'rounded-lg border bg-white px-3 py-2 text-sm shadow-xs outline-none transition placeholder:text-slate-400',
           'focus:ring-2',
@@ -30,9 +32,9 @@ export function TextField({ label, error, id, className, ...props }: TextFieldPr
         )}
         {...props}
       />
-      {error && (
-        <p id={errorId} className="text-sm text-red-600">
-          {error}
+      {message && (
+        <p id={messageId} className={cn('text-sm', error ? 'text-red-600' : 'text-slate-500')}>
+          {message}
         </p>
       )}
     </div>

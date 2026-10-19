@@ -1,6 +1,5 @@
-import { Pagination } from '@/components/ui'
+import { Pagination, SearchForm } from '@/components/ui'
 import { CatalogResults } from '../components/CatalogResults'
-import { CatalogSearchForm } from '../components/CatalogSearchForm'
 import { CategoryFilter } from '../components/CategoryFilter'
 import { useCatalogCategories } from '../hooks/useCatalogCategories'
 import { useCatalogFilters } from '../hooks/useCatalogFilters'
@@ -18,7 +17,12 @@ export function CatalogPage() {
           <h1 className="text-3xl font-semibold tracking-tight">Our products</h1>
           <p className="mt-1 text-sm text-slate-500">Browse the catalog and find what you need.</p>
         </div>
-        <CatalogSearchForm initialQuery={filters.query} onSearch={filters.setQuery} />
+        <SearchForm
+          initialQuery={filters.query}
+          onSearch={filters.setQuery}
+          label="Search products"
+          placeholder="Search by name or SKU"
+        />
       </div>
 
       <CategoryFilter

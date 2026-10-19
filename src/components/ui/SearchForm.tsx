@@ -1,12 +1,16 @@
-import type { FormEvent } from 'react'
-import { Button } from '@/components/ui'
+import { useId, type FormEvent } from 'react'
+import { Button } from './Button'
 
-type CatalogSearchFormProps = {
+type SearchFormProps = {
   initialQuery: string
   onSearch: (query: string) => void
+  label: string
+  placeholder?: string
 }
 
-export function CatalogSearchForm({ initialQuery, onSearch }: CatalogSearchFormProps) {
+export function SearchForm({ initialQuery, onSearch, label, placeholder }: SearchFormProps) {
+  const inputId = useId()
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     onSearch(String(new FormData(event.currentTarget).get('q') ?? ''))
@@ -14,19 +18,21 @@ export function CatalogSearchForm({ initialQuery, onSearch }: CatalogSearchFormP
 
   return (
     <form role="search" onSubmit={handleSubmit} className="flex w-full gap-2 sm:w-auto">
-      <label htmlFor="catalog-search" className="sr-only">
-        Search products
+      <label htmlFor={inputId} className="sr-only">
+        {label}
       </label>
       <input
         key={initialQuery}
-        id="catalog-search"
+        id={inputId}
         name="q"
         type="search"
         defaultValue={initialQuery}
-        placeholder="Search by name or SKU"
+        placeholder={placeholder}
         className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-xs outline-none placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 sm:w-72"
       />
-      <Button type="submit">Search</Button>
+      <Button type="submit" variant="secondary">
+        Search
+      </Button>
     </form>
   )
 }
