@@ -2,4 +2,5 @@ export { api, apiRequest, refreshAccessToken, setSessionExpiredHandler } from '.
 export type { RequestOptions } from './apiClient'
 export { ApiError } from './ApiError'
 export type { ApiErrorItem } from './ApiError'
+export type { PageResponse } from './PageResponse'
 export { tokenStore } from './tokenStore'
