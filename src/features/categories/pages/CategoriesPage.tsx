@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
-import { ButtonLink, PageHeader, Pagination, SearchForm } from '@/components/ui'
+import { ButtonLink, PageHeader, Pagination, SearchInput } from '@/components/ui'
 import { useAuth } from '@/features/auth'
 import { CategoriesResults } from '../components/CategoriesResults'
 import { DeleteCategoryDialog } from '../components/DeleteCategoryDialog'
@@ -30,8 +30,8 @@ export function CategoriesPage() {
         }
       />
 
-      <SearchForm
-        initialQuery={listParams.query}
+      <SearchInput
+        query={listParams.query}
         onSearch={listParams.setQuery}
         label="Search categories"
         placeholder="Search by name"

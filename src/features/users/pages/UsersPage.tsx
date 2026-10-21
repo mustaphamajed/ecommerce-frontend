@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
-import { ButtonLink, PageHeader, Pagination, SearchForm } from '@/components/ui'
+import { ButtonLink, PageHeader, Pagination, SearchInput } from '@/components/ui'
 import { useAuth } from '@/features/auth'
 import { DisableUserDialog } from '../components/DisableUserDialog'
 import { UsersResults } from '../components/UsersResults'
@@ -39,8 +39,8 @@ export function UsersPage() {
       />
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <SearchForm
-          initialQuery={listParams.query}
+        <SearchInput
+          query={listParams.query}
           onSearch={listParams.setQuery}
           label="Search users"
           placeholder="Search by name or email"

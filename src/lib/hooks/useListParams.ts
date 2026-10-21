@@ -9,22 +9,30 @@ export type SortState = {
 
 type ParamChanges = Record<string, string | null>
 
+type UpdateOptions = {
+  resetPage?: boolean
+  replace?: boolean
+}
+
 export function useListParams(defaultSort?: SortState) {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const update = (changes: ParamChanges, resetPage = true) =>
-    setSearchParams((previous) => {
-      const next = new URLSearchParams(previous)
-      const allChanges = resetPage ? { ...changes, page: null } : changes
-      for (const [key, value] of Object.entries(allChanges)) {
-        if (value) {
-          next.set(key, value)
-        } else {
-          next.delete(key)
+  const update = (changes: ParamChanges, { resetPage = true, replace = false }: UpdateOptions = {}) =>
+    setSearchParams(
+      (previous) => {
+        const next = new URLSearchParams(previous)
+        const allChanges = resetPage ? { ...changes, page: null } : changes
+        for (const [key, value] of Object.entries(allChanges)) {
+          if (value) {
+            next.set(key, value)
+          } else {
+            next.delete(key)
+          }
         }
-      }
-      return next
-    })
+        return next
+      },
+      { replace },
+    )
 
   const sort = parseSort(searchParams.get('sort')) ?? defaultSort ?? null
   const query = searchParams.get('q') ?? ''
@@ -35,8 +43,8 @@ export function useListParams(defaultSort?: SortState) {
     sort,
     get: (key: string) => searchParams.get(key) ?? '',
     update,
-    setQuery: (value: string) => update({ q: value.trim() || null }),
-    setPage: (page: number) => update({ page: page > 0 ? String(page + 1) : null }, false),
+    setQuery: (value: string) => update({ q: value.trim() || null }, { replace: true }),
+    setPage: (page: number) => update({ page: page > 0 ? String(page + 1) : null }, { resetPage: false }),
     toggleSort: (field: string) => {
       const direction: SortDirection = sort?.field === field && sort.direction === 'asc' ? 'desc' : 'asc'
       update({ sort: `${field},${direction}` })

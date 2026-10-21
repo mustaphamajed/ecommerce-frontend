@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Badge, Pagination, SearchForm } from '@/components/ui'
+import { Badge, Pagination, SearchInput } from '@/components/ui'
 import { useStockLevels } from '../hooks/useStockLevels'
 import { useStockListParams } from '../hooks/useStockListParams'
 import { useWarehouseAccess } from '../hooks/useWarehouseAccess'
@@ -37,8 +37,8 @@ export function StockWorkspace({ warehouses }: StockWorkspaceProps) {
           canAdjust={access.canAdjust}
           onChange={listParams.setWarehouseId}
         />
-        <SearchForm
-          initialQuery={listParams.query}
+        <SearchInput
+          query={listParams.query}
           onSearch={listParams.setQuery}
           label="Search products"
           placeholder="Search by name or SKU"

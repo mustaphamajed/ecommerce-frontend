@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
-import { ButtonLink, PageHeader, Pagination, SearchForm } from '@/components/ui'
+import { ButtonLink, PageHeader, Pagination, SearchInput } from '@/components/ui'
 import { useAuth } from '@/features/auth'
 import { ArchiveProductDialog } from '../components/ArchiveProductDialog'
 import { ProductFilters } from '../components/ProductFilters'
@@ -42,8 +42,8 @@ export function ProductsPage() {
       />
 
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-        <SearchForm
-          initialQuery={listParams.query}
+        <SearchInput
+          query={listParams.query}
           onSearch={listParams.setQuery}
           label="Search products"
           placeholder="Search by name or SKU"
