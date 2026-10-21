@@ -6,6 +6,7 @@ import { CategoriesPage, CategoryCreatePage, CategoryEditPage } from '@/features
 import { DashboardPage } from '@/features/dashboard'
 import { NotFoundPage } from '@/features/errors'
 import { ProductCreatePage, ProductEditPage, ProductsPage } from '@/features/products'
+import { RoleCreatePage, RoleEditPage, RolesPage } from '@/features/roles'
 import { StockPage } from '@/features/stock'
 import { UserCreatePage, UserEditPage, UsersPage } from '@/features/users'
 
@@ -52,6 +53,14 @@ export const router = createBrowserRouter([
             children: [
               { path: 'users/new', element: <UserCreatePage /> },
               { path: 'users/:userId/edit', element: <UserEditPage /> },
+            ],
+          },
+          {
+            element: <RequirePermission permission="role:manage" />,
+            children: [
+              { path: 'roles', element: <RolesPage /> },
+              { path: 'roles/new', element: <RoleCreatePage /> },
+              { path: 'roles/:roleId/edit', element: <RoleEditPage /> },
             ],
           },
         ],

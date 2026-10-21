@@ -13,4 +13,5 @@ export const navigationItems: NavigationItem[] = [
   { to: '/admin/stock', label: 'Stock', permission: 'stock:read' },
   { to: '/admin/categories', label: 'Categories', permission: 'product:read' },
   { to: '/admin/users', label: 'Users', permission: 'user:read' },
+  { to: '/admin/roles', label: 'Roles', permission: 'role:manage' },
 ]
