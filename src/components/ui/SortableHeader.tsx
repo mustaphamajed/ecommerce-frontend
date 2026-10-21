@@ -21,7 +21,7 @@ export function SortableHeader({ label, field, sort, onSort }: SortableHeaderPro
       className="inline-flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900"
     >
       {label}
-      <span aria-hidden="true" className={cn('text-xs', direction === 'none' ? 'text-slate-300' : 'text-indigo-600')}>
+      <span aria-hidden="true" className={cn('text-xs', direction === 'none' ? 'text-slate-300' : 'text-brand-600')}>
         {indicators[direction]}
       </span>
     </button>

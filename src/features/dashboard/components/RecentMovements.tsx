@@ -11,7 +11,7 @@ export function RecentMovements({ movements }: RecentMovementsProps) {
     <section className="rounded-xl border border-slate-200 bg-white shadow-xs">
       <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
         <h2 className="text-base font-semibold">Recent stock movements</h2>
-        <Link to="/admin/stock" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+        <Link to="/admin/stock" className="text-sm font-medium text-brand-600 hover:text-brand-500">
           View all
         </Link>
       </div>

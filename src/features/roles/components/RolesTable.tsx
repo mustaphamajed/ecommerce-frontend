@@ -34,7 +34,7 @@ export function RolesTable({ roles, canManage, onDelete }: RolesTableProps) {
           cell: ({ getValue }) => (
             <div className="flex max-w-md flex-wrap gap-1">
               {getValue().map((permission) => (
-                <Badge key={permission} variant="indigo">
+                <Badge key={permission} variant="brand">
                   {permission}
                 </Badge>
               ))}

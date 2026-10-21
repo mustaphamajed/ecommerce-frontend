@@ -28,7 +28,7 @@ export function SearchForm({ initialQuery, onSearch, label, placeholder }: Searc
         type="search"
         defaultValue={initialQuery}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-xs outline-none placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 sm:w-72"
+        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-xs outline-none placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 sm:w-72"
       />
       <Button type="submit" variant="secondary">
         Search

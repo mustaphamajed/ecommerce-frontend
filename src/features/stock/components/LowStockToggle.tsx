@@ -12,7 +12,7 @@ export function LowStockToggle({ checked, onChange }: LowStockToggleProps) {
         type="checkbox"
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
-        className="size-4 accent-indigo-600"
+        className="size-4 accent-brand-600"
       />
       Low stock only (≤ {LOW_STOCK_THRESHOLD})
     </label>

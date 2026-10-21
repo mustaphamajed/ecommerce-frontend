@@ -25,7 +25,7 @@ export function CatalogResults({
 
   return {
     loading: (
-      <div className="flex justify-center py-24 text-indigo-600">
+      <div className="flex justify-center py-24 text-brand-600">
         <Spinner className="size-8" />
       </div>
     ),

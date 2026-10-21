@@ -33,7 +33,7 @@ export function StatCard({ label, value, hint, tone = 'neutral', to }: StatCardP
   const cardClasses = 'block rounded-xl border border-slate-200 bg-white p-5 shadow-xs'
 
   return to ? (
-    <Link to={to} className={cn(cardClasses, 'transition hover:border-indigo-300 hover:shadow-sm')}>
+    <Link to={to} className={cn(cardClasses, 'transition hover:border-brand-300 hover:shadow-sm')}>
       {content}
     </Link>
   ) : (

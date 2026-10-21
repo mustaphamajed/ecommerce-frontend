@@ -53,7 +53,7 @@ export function UsersTable({
           cell: ({ getValue }) => (
             <div className="flex flex-wrap gap-1">
               {getValue().map((role) => (
-                <Badge key={role.id} variant="indigo">
+                <Badge key={role.id} variant="brand">
                   {role.name}
                 </Badge>
               ))}

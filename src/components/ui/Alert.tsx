@@ -11,7 +11,7 @@ type AlertProps = {
 const variantClasses: Record<AlertVariant, string> = {
   error: 'border-red-200 bg-red-50 text-red-700',
   success: 'border-green-200 bg-green-50 text-green-700',
-  info: 'border-indigo-200 bg-indigo-50 text-indigo-700',
+  info: 'border-brand-200 bg-brand-50 text-brand-700',
 }
 
 export function Alert({ variant = 'error', children }: AlertProps) {

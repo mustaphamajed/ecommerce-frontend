@@ -27,7 +27,7 @@ export function TextField({ label, error, hint, id, className, ...props }: TextF
           'focus:ring-2',
           error
             ? 'border-red-400 focus:border-red-500 focus:ring-red-500/20'
-            : 'border-slate-300 focus:border-indigo-500 focus:ring-indigo-500/20',
+            : 'border-slate-300 focus:border-brand-500 focus:ring-brand-500/20',
           className,
         )}
         {...props}

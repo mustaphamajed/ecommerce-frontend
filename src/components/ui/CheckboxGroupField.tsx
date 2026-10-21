@@ -32,7 +32,7 @@ export function CheckboxGroupField({ legend, options, value, onChange, error, hi
             key={option.value}
             className={cn(
               'flex cursor-pointer items-start gap-3 rounded-lg border p-3 transition',
-              'has-checked:border-indigo-500 has-checked:bg-indigo-50',
+              'has-checked:border-brand-500 has-checked:bg-brand-50',
               error ? 'border-red-300' : 'border-slate-200 hover:border-slate-300',
             )}
           >
@@ -40,7 +40,7 @@ export function CheckboxGroupField({ legend, options, value, onChange, error, hi
               type="checkbox"
               checked={value.includes(option.value)}
               onChange={(event) => toggle(option.value, event.target.checked)}
-              className="mt-0.5 size-4 accent-indigo-600"
+              className="mt-0.5 size-4 accent-brand-600"
             />
             <span>
               <span className="block text-sm font-medium text-slate-900">{option.label}</span>

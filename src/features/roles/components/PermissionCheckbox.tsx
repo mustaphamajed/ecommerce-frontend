@@ -15,7 +15,7 @@ export function PermissionCheckbox({ permission, checked, locked, onToggle }: Pe
       title={locked ? 'The ADMIN role always keeps this permission' : undefined}
       className={cn(
         'flex items-start gap-2.5 rounded-lg border px-3 py-2 transition',
-        'has-checked:border-indigo-500 has-checked:bg-indigo-50',
+        'has-checked:border-brand-500 has-checked:bg-brand-50',
         locked ? 'cursor-not-allowed opacity-70' : 'cursor-pointer border-slate-200 hover:border-slate-300',
       )}
     >
@@ -24,7 +24,7 @@ export function PermissionCheckbox({ permission, checked, locked, onToggle }: Pe
         checked={checked}
         disabled={locked}
         onChange={(event) => onToggle(permission, event.target.checked)}
-        className="mt-0.5 size-4 accent-indigo-600"
+        className="mt-0.5 size-4 accent-brand-600"
       />
       <span>
         <span className="block text-sm font-medium text-slate-900">{permissionLabel(permission)}</span>

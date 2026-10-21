@@ -3,9 +3,9 @@ import { Link } from 'react-router'
 export function NotFoundPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center text-center">
-      <p className="text-sm font-semibold text-indigo-600">404</p>
+      <p className="text-sm font-semibold text-brand-600">404</p>
       <h1 className="mt-2 text-2xl font-semibold">Page not found</h1>
-      <Link to="/" className="mt-6 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+      <Link to="/" className="mt-6 text-sm font-medium text-brand-600 hover:text-brand-500">
         Back to store
       </Link>
     </main>

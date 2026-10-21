@@ -41,7 +41,7 @@ export function StockMovementsPanel({ warehouse, productId, productName, onClear
       {
         {
           loading: (
-            <div className="flex justify-center py-12 text-indigo-600">
+            <div className="flex justify-center py-12 text-brand-600">
               <Spinner className="size-6" />
             </div>
           ),
