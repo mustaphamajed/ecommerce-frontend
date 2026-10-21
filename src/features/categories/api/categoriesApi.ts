@@ -2,7 +2,7 @@ import { api, type PageResponse } from '@/lib/api'
 import { toSortParam } from '@/lib/hooks/useListParams'
 import type { Category, CategoryInput, CategoryListParams } from '../types'
 
-export const CATEGORIES_PAGE_SIZE = 20
+export const CATEGORIES_PAGE_SIZE = 10
 
 export const categoriesApi = {
   list: ({ query, page, sort }: CategoryListParams, signal?: AbortSignal) =>

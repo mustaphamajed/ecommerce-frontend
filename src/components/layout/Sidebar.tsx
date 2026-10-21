@@ -12,7 +12,7 @@ export function Sidebar() {
   }))
 
   return (
-    <aside className="hidden w-64 shrink-0 flex-col border-r border-slate-200 bg-white md:flex">
+    <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-slate-200 bg-white md:flex">
       <Link to="/admin" className="flex h-16 items-center gap-2.5 border-b border-slate-200 px-5">
         <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600 text-white">
           <Store aria-hidden="true" className="size-4.5" />
@@ -22,7 +22,7 @@ export function Sidebar() {
           <span className="block text-xs text-slate-500">Admin panel</span>
         </span>
       </Link>
-      <nav aria-label="Main" className="flex flex-1 flex-col gap-6 overflow-y-auto p-3 pt-5">
+      <nav aria-label="Main" className="flex flex-1 flex-col gap-6 p-3 pt-5">
         {sections.map((section) => (
           <SidebarSection key={section.title} title={section.title} items={section.items} />
         ))}

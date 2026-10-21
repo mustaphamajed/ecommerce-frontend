@@ -2,7 +2,7 @@ import { api, type PageResponse } from '@/lib/api'
 import { toSortParam } from '@/lib/hooks/useListParams'
 import type { Product, ProductInput, ProductListParams } from '../types'
 
-export const PRODUCTS_PAGE_SIZE = 20
+export const PRODUCTS_PAGE_SIZE = 10
 
 const MAX_CATEGORY_OPTIONS = 100
 

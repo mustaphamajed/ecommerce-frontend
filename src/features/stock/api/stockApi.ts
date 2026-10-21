@@ -9,7 +9,7 @@ import type {
   Warehouse,
 } from '../types'
 
-export const STOCK_PAGE_SIZE = 20
+export const STOCK_PAGE_SIZE = 10
 export const MOVEMENTS_PAGE_SIZE = 10
 export const LOW_STOCK_THRESHOLD = 5
 
