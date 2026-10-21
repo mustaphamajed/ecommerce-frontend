@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/cn'
 
-type BadgeVariant = 'neutral' | 'indigo' | 'green' | 'red'
+type BadgeVariant = 'neutral' | 'indigo' | 'green' | 'amber' | 'red'
 
 type BadgeProps = {
   variant?: BadgeVariant
@@ -12,6 +12,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   neutral: 'bg-slate-100 text-slate-700',
   indigo: 'bg-indigo-50 text-indigo-700',
   green: 'bg-green-50 text-green-700',
+  amber: 'bg-amber-50 text-amber-700',
   red: 'bg-red-50 text-red-700',
 }
 
