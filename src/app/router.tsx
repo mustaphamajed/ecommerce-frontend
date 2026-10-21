@@ -5,7 +5,7 @@ import { CatalogPage } from '@/features/catalog'
 import { CategoriesPage, CategoryCreatePage, CategoryEditPage } from '@/features/categories'
 import { DashboardPage } from '@/features/dashboard'
 import { NotFoundPage } from '@/features/errors'
-import { UsersPage } from '@/features/users'
+import { UserCreatePage, UserEditPage, UsersPage } from '@/features/users'
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +35,13 @@ export const router = createBrowserRouter([
           {
             element: <RequirePermission permission="user:read" />,
             children: [{ path: 'users', element: <UsersPage /> }],
+          },
+          {
+            element: <RequirePermission permission="user:manage" />,
+            children: [
+              { path: 'users/new', element: <UserCreatePage /> },
+              { path: 'users/:userId/edit', element: <UserEditPage /> },
+            ],
           },
         ],
       },
