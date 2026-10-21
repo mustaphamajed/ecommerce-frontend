@@ -5,6 +5,7 @@ import { CatalogPage } from '@/features/catalog'
 import { CategoriesPage, CategoryCreatePage, CategoryEditPage } from '@/features/categories'
 import { DashboardPage } from '@/features/dashboard'
 import { NotFoundPage } from '@/features/errors'
+import { ProductCreatePage, ProductEditPage, ProductsPage } from '@/features/products'
 import { UserCreatePage, UserEditPage, UsersPage } from '@/features/users'
 
 export const router = createBrowserRouter([
@@ -23,11 +24,16 @@ export const router = createBrowserRouter([
           { index: true, element: <DashboardPage /> },
           {
             element: <RequirePermission permission="product:read" />,
-            children: [{ path: 'categories', element: <CategoriesPage /> }],
+            children: [
+              { path: 'products', element: <ProductsPage /> },
+              { path: 'categories', element: <CategoriesPage /> },
+            ],
           },
           {
             element: <RequirePermission permission="product:write" />,
             children: [
+              { path: 'products/new', element: <ProductCreatePage /> },
+              { path: 'products/:productId/edit', element: <ProductEditPage /> },
               { path: 'categories/new', element: <CategoryCreatePage /> },
               { path: 'categories/:categoryId/edit', element: <CategoryEditPage /> },
             ],
