@@ -1,6 +1,6 @@
 import { Plus, TriangleAlert } from 'lucide-react'
 import { useState } from 'react'
-import { Button, ButtonLink, EmptyState, PageHeader, Spinner } from '@/components/ui'
+import { Button, ButtonLink, EmptyState, PageHeader, TableSkeleton } from '@/components/ui'
 import { useAuth } from '@/features/auth'
 import { DeleteRoleDialog } from '../components/DeleteRoleDialog'
 import { RolesTable } from '../components/RolesTable'
@@ -30,11 +30,7 @@ export function RolesPage() {
       />
       {
         {
-          loading: (
-            <div className="flex justify-center py-24 text-brand-600">
-              <Spinner className="size-8" />
-            </div>
-          ),
+          loading: <TableSkeleton columns={4} rows={4} />,
           error: (
             <EmptyState
               icon={TriangleAlert}

@@ -1,5 +1,5 @@
 import { History, TriangleAlert } from 'lucide-react'
-import { Button, EmptyState, Pagination, Spinner } from '@/components/ui'
+import { Button, EmptyState, Pagination, TableSkeleton } from '@/components/ui'
 import { useStockHistoryParams } from '../hooks/useStockHistoryParams'
 import { useStockMovements } from '../hooks/useStockMovements'
 import type { StockMovement, Warehouse } from '../types'
@@ -48,11 +48,7 @@ export function StockHistoryWorkspace({ warehouses }: StockHistoryWorkspaceProps
 
       {
         {
-          loading: (
-            <div className="flex justify-center py-24 text-brand-600">
-              <Spinner className="size-8" />
-            </div>
-          ),
+          loading: <TableSkeleton columns={6} />,
           error: (
             <EmptyState
               icon={TriangleAlert}

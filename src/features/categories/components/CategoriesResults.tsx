@@ -1,5 +1,5 @@
 import { SearchX, Tags, TriangleAlert } from 'lucide-react'
-import { Button, EmptyState, Spinner } from '@/components/ui'
+import { Button, EmptyState, TableSkeleton } from '@/components/ui'
 import type { SortState } from '@/lib/hooks/useListParams'
 import type { Category } from '../types'
 import { CategoriesTable } from './CategoriesTable'
@@ -34,11 +34,7 @@ export function CategoriesResults({
   const state = resultsState(categories, isLoading, isError, hasSearch)
 
   return {
-    loading: (
-      <div className="flex justify-center py-24 text-brand-600">
-        <Spinner className="size-8" />
-      </div>
-    ),
+    loading: <TableSkeleton columns={5} />,
     error: (
       <EmptyState
         icon={TriangleAlert}

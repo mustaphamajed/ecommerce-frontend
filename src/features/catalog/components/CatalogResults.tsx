@@ -1,7 +1,8 @@
 import { Package, SearchX, TriangleAlert } from 'lucide-react'
-import { Button, EmptyState, Spinner } from '@/components/ui'
+import { Button, EmptyState } from '@/components/ui'
 import type { CatalogProduct } from '../types'
 import { ProductGrid } from './ProductGrid'
+import { ProductGridSkeleton } from './ProductGridSkeleton'
 
 type CatalogResultsProps = {
   products: CatalogProduct[]
@@ -25,11 +26,7 @@ export function CatalogResults({
   const state = resultsState(products, isLoading, isError, hasFilters)
 
   return {
-    loading: (
-      <div className="flex justify-center py-24 text-brand-600">
-        <Spinner className="size-8" />
-      </div>
-    ),
+    loading: <ProductGridSkeleton />,
     error: (
       <EmptyState
         icon={TriangleAlert}

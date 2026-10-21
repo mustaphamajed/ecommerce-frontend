@@ -1,6 +1,6 @@
 import { Package, SearchX, TriangleAlert } from 'lucide-react'
 import type { ComponentProps } from 'react'
-import { Button, EmptyState, Spinner } from '@/components/ui'
+import { Button, EmptyState, TableSkeleton } from '@/components/ui'
 import type { Product } from '../types'
 import { ProductsTable } from './ProductsTable'
 
@@ -27,11 +27,7 @@ export function ProductsResults({
   const state = resultsState(products, isLoading, isError, hasFilters)
 
   return {
-    loading: (
-      <div className="flex justify-center py-24 text-brand-600">
-        <Spinner className="size-8" />
-      </div>
-    ),
+    loading: <TableSkeleton columns={6} />,
     error: (
       <EmptyState
         icon={TriangleAlert}

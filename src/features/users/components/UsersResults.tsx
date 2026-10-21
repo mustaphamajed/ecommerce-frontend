@@ -1,6 +1,6 @@
 import { SearchX, TriangleAlert } from 'lucide-react'
 import type { ComponentProps } from 'react'
-import { Button, EmptyState, Spinner } from '@/components/ui'
+import { Button, EmptyState, TableSkeleton } from '@/components/ui'
 import type { User } from '../types'
 import { UsersTable } from './UsersTable'
 
@@ -27,11 +27,7 @@ export function UsersResults({
   const state = resultsState(users, isLoading, isError, hasFilters)
 
   return {
-    loading: (
-      <div className="flex justify-center py-24 text-brand-600">
-        <Spinner className="size-8" />
-      </div>
-    ),
+    loading: <TableSkeleton columns={7} />,
     error: (
       <EmptyState
         icon={TriangleAlert}
