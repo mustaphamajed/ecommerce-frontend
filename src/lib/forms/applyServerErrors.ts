@@ -7,19 +7,24 @@ export function applyServerErrors<TFieldValues extends FieldValues>(
   error: unknown,
   setError: UseFormSetError<TFieldValues>,
   formFields: ReadonlyArray<Path<TFieldValues>>,
+  serverFieldAliases: Readonly<Record<string, Path<TFieldValues>>> = {},
 ) {
   if (!(error instanceof ApiError)) {
     setError('root.server', { message: NETWORK_ERROR_MESSAGE })
     return
   }
 
+  const toFormField = (property: string | null): string | null =>
+    property === null ? null : (serverFieldAliases[property] ?? property)
+
   const isFormField = (property: string | null): property is Path<TFieldValues> =>
     property !== null && (formFields as ReadonlyArray<string>).includes(property)
 
   const generalMessages: string[] = []
   for (const item of error.errors) {
-    if (isFormField(item.property)) {
-      setError(item.property, { type: 'server', message: item.detail })
+    const field = toFormField(item.property)
+    if (isFormField(field)) {
+      setError(field, { type: 'server', message: item.detail })
     } else {
       generalMessages.push(item.detail)
     }
