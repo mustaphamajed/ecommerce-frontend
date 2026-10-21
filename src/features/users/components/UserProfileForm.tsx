@@ -1,7 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { Alert, Button, TextField } from '@/components/ui'
 import { applyServerErrors } from '@/lib/forms/applyServerErrors'
+import { useUnsavedChanges } from '@/lib/forms/useUnsavedChanges'
+import { useSaveShortcut } from '@/lib/hooks/useSaveShortcut'
 import {
   toUserProfileFormValues,
   userProfileFormFields,
@@ -26,6 +29,9 @@ export function UserProfileForm({ user, onSubmit }: UserProfileFormProps) {
     resolver: zodResolver(userProfileSchema),
     defaultValues: toUserProfileFormValues(user),
   })
+  const formRef = useRef<HTMLFormElement>(null)
+  useUnsavedChanges(isDirty && !isSubmitting)
+  useSaveShortcut(formRef)
 
   const submit = handleSubmit(async (values) => {
     try {
@@ -37,7 +43,7 @@ export function UserProfileForm({ user, onSubmit }: UserProfileFormProps) {
   })
 
   return (
-    <form noValidate onSubmit={submit} className="flex flex-col gap-5">
+    <form ref={formRef} noValidate onSubmit={submit} className="flex flex-col gap-5">
       {errors.root?.server && <Alert>{errors.root.server.message}</Alert>}
       <div className="grid gap-5 sm:grid-cols-2">
         <TextField label="First name" error={errors.firstName?.message} {...register('firstName')} />

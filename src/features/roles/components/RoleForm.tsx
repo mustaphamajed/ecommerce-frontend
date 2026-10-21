@@ -1,8 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRef } from 'react'
 import { useController, useForm, useWatch } from 'react-hook-form'
 import { Alert, Button, ButtonLink, TextAreaField, TextField } from '@/components/ui'
 import type { Permission } from '@/features/auth'
 import { applyServerErrors } from '@/lib/forms/applyServerErrors'
+import { useUnsavedChanges } from '@/lib/forms/useUnsavedChanges'
+import { useSaveShortcut } from '@/lib/hooks/useSaveShortcut'
 import { normalizeRoleName, roleFormFields, roleSchema, type RoleFormValues } from '../schemas/roleSchema'
 import { PermissionGrid } from './PermissionGrid'
 
@@ -28,11 +31,14 @@ export function RoleForm({
     register,
     handleSubmit,
     setError,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
   } = useForm<RoleFormValues>({
     resolver: zodResolver(roleSchema),
     defaultValues,
   })
+  const formRef = useRef<HTMLFormElement>(null)
+  useUnsavedChanges(isDirty && !isSubmitting)
+  useSaveShortcut(formRef)
   const permissions = useController({ control, name: 'permissions' })
   const name = useWatch({ control, name: 'name' })
   const savedName = normalizeRoleName(name ?? '')
@@ -47,6 +53,7 @@ export function RoleForm({
 
   return (
     <form
+      ref={formRef}
       noValidate
       onSubmit={submit}
       className="flex max-w-3xl flex-col gap-5 rounded-xl border border-slate-200 bg-white p-6 shadow-card"

@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router'
+import { UnsavedChangesGuard } from '@/components/ui'
 import { Sidebar } from './Sidebar'
 import { Topbar } from './Topbar'
 
@@ -12,6 +13,7 @@ export function AppLayout() {
           <Outlet />
         </main>
       </div>
+      <UnsavedChangesGuard />
     </div>
   )
 }

@@ -1,24 +1,22 @@
-import { useEffect } from 'react'
+import { useEffect, useSyncExternalStore } from 'react'
 import { useBlocker } from 'react-router'
+import { unsavedChangesStore } from '@/lib/forms/unsavedChangesStore'
 import { ConfirmDialog } from './ConfirmDialog'
 
-type UnsavedChangesGuardProps = {
-  when: boolean
-}
-
-export function UnsavedChangesGuard({ when }: UnsavedChangesGuardProps) {
+export function UnsavedChangesGuard() {
+  const hasUnsavedChanges = useSyncExternalStore(unsavedChangesStore.subscribe, unsavedChangesStore.getSnapshot)
   const blocker = useBlocker(
-    ({ currentLocation, nextLocation }) => when && currentLocation.pathname !== nextLocation.pathname,
+    ({ currentLocation, nextLocation }) => hasUnsavedChanges && currentLocation.pathname !== nextLocation.pathname,
   )
 
   useEffect(() => {
-    if (!when) {
+    if (!hasUnsavedChanges) {
       return
     }
     const warnBeforeUnload = (event: BeforeUnloadEvent) => event.preventDefault()
     window.addEventListener('beforeunload', warnBeforeUnload)
     return () => window.removeEventListener('beforeunload', warnBeforeUnload)
-  }, [when])
+  }, [hasUnsavedChanges])
 
   return (
     <ConfirmDialog

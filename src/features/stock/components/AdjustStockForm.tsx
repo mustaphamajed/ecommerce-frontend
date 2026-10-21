@@ -1,7 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRef } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { Alert, Button, SelectField, TextAreaField, TextField } from '@/components/ui'
 import { applyServerErrors } from '@/lib/forms/applyServerErrors'
+import { useSaveShortcut } from '@/lib/hooks/useSaveShortcut'
 import { useAdjustStock } from '../hooks/useAdjustStock'
 import {
   adjustStockFormFields,
@@ -37,6 +39,8 @@ export function AdjustStockForm({ level, warehouse, onDone, onCancel }: AdjustSt
     resolver: zodResolver(adjustStockSchema),
     defaultValues: emptyAdjustStockForm,
   })
+  const formRef = useRef<HTMLFormElement>(null)
+  useSaveShortcut(formRef)
   const values = useWatch({ control })
   const reason = values.reason ?? emptyAdjustStockForm.reason
   const direction = values.direction ?? emptyAdjustStockForm.direction
@@ -57,7 +61,7 @@ export function AdjustStockForm({ level, warehouse, onDone, onCancel }: AdjustSt
   })
 
   return (
-    <form noValidate onSubmit={submit} className="flex flex-col gap-5">
+    <form ref={formRef} noValidate onSubmit={submit} className="flex flex-col gap-5">
       {errors.root?.server && <Alert>{errors.root.server.message}</Alert>}
       <SelectField label="Reason" error={errors.reason?.message} {...register('reason')}>
         {MANUAL_REASONS.map((manualReason) => (

@@ -1,7 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRef } from 'react'
 import { useController, useForm } from 'react-hook-form'
 import { Alert, Button } from '@/components/ui'
 import { applyServerErrors } from '@/lib/forms/applyServerErrors'
+import { useUnsavedChanges } from '@/lib/forms/useUnsavedChanges'
+import { useSaveShortcut } from '@/lib/hooks/useSaveShortcut'
 import {
   toUserAccessFormValues,
   userAccessFormFields,
@@ -29,6 +32,9 @@ export function UserAccessForm({ user, roles, warehouses, onSubmit }: UserAccess
     resolver: zodResolver(userAccessSchema),
     defaultValues: toUserAccessFormValues(user),
   })
+  const formRef = useRef<HTMLFormElement>(null)
+  useUnsavedChanges(isDirty && !isSubmitting)
+  useSaveShortcut(formRef)
   const roleIds = useController({ control, name: 'roleIds' })
   const warehouseIds = useController({ control, name: 'warehouseIds' })
 
@@ -42,7 +48,7 @@ export function UserAccessForm({ user, roles, warehouses, onSubmit }: UserAccess
   })
 
   return (
-    <form noValidate onSubmit={submit} className="flex flex-col gap-5">
+    <form ref={formRef} noValidate onSubmit={submit} className="flex flex-col gap-5">
       {errors.root?.server && <Alert>{errors.root.server.message}</Alert>}
       <AccessFields
         roles={roles}

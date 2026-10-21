@@ -1,7 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRef } from 'react'
 import { useController, useForm } from 'react-hook-form'
 import { Alert, Button, ButtonLink, TextField } from '@/components/ui'
 import { applyServerErrors } from '@/lib/forms/applyServerErrors'
+import { useUnsavedChanges } from '@/lib/forms/useUnsavedChanges'
+import { useSaveShortcut } from '@/lib/hooks/useSaveShortcut'
 import {
   createUserFormFields,
   createUserSchema,
@@ -23,11 +26,14 @@ export function CreateUserForm({ roles, warehouses, onSubmit }: CreateUserFormPr
     register,
     handleSubmit,
     setError,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
   } = useForm<CreateUserFormValues>({
     resolver: zodResolver(createUserSchema),
     defaultValues: emptyCreateUserForm,
   })
+  const formRef = useRef<HTMLFormElement>(null)
+  useUnsavedChanges(isDirty && !isSubmitting)
+  useSaveShortcut(formRef)
   const roleIds = useController({ control, name: 'roleIds' })
   const warehouseIds = useController({ control, name: 'warehouseIds' })
 
@@ -41,6 +47,7 @@ export function CreateUserForm({ roles, warehouses, onSubmit }: CreateUserFormPr
 
   return (
     <form
+      ref={formRef}
       noValidate
       onSubmit={submit}
       className="flex max-w-2xl flex-col gap-5 rounded-xl border border-slate-200 bg-white p-6 shadow-card"
