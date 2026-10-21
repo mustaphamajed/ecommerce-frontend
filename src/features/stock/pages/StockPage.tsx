@@ -1,4 +1,5 @@
-import { Button, EmptyState, PageHeader, Spinner } from '@/components/ui'
+import { History } from 'lucide-react'
+import { Button, ButtonLink, EmptyState, PageHeader, Spinner } from '@/components/ui'
 import { StockWorkspace } from '../components/StockWorkspace'
 import { useStockWarehouses } from '../hooks/useStockWarehouses'
 
@@ -15,7 +16,16 @@ export function StockPage() {
 
   return (
     <section className="flex flex-col gap-6">
-      <PageHeader title="Stock" description="Quantities per warehouse, adjustments and their history." />
+      <PageHeader
+        title="Stock"
+        description="Quantities per warehouse and stock adjustments."
+        actions={
+          <ButtonLink to="/admin/stock/history" variant="secondary">
+            <History aria-hidden="true" className="size-4" />
+            View history
+          </ButtonLink>
+        }
+      />
       {
         {
           loading: (

@@ -7,7 +7,6 @@ import type { StockLevel, Warehouse } from '../types'
 import { AdjustStockDialog } from './AdjustStockDialog'
 import { LowStockToggle } from './LowStockToggle'
 import { StockLevelsResults } from './StockLevelsResults'
-import { StockMovementsPanel } from './StockMovementsPanel'
 import { WarehouseSelect } from './WarehouseSelect'
 
 type StockWorkspaceProps = {
@@ -27,11 +26,6 @@ export function StockWorkspace({ warehouses }: StockWorkspaceProps) {
     sort: listParams.sort,
   })
   const levels = levelsQuery.data?.content ?? []
-  const historyProductName =
-    listParams.productId === null
-      ? null
-      : (levels.find((level) => level.productId === listParams.productId)?.productName ??
-        `Product #${listParams.productId}`)
   const [levelToAdjust, setLevelToAdjust] = useState<StockLevel | null>(null)
 
   return (
@@ -65,9 +59,9 @@ export function StockWorkspace({ warehouses }: StockWorkspaceProps) {
         onClearFilters={listParams.clear}
         onRetry={() => levelsQuery.refetch()}
         sort={listParams.sort}
+        warehouseId={warehouse.id}
         canAdjust={canAdjust}
         onSort={listParams.toggleSort}
-        onShowHistory={(level) => listParams.setProductId(level.productId)}
         onAdjust={setLevelToAdjust}
       />
 
@@ -75,14 +69,6 @@ export function StockWorkspace({ warehouses }: StockWorkspaceProps) {
         page={listParams.page}
         totalPages={levelsQuery.data?.totalPages ?? 0}
         onPageChange={listParams.setPage}
-      />
-
-      <StockMovementsPanel
-        key={`${warehouse.id}-${listParams.productId ?? 'all'}`}
-        warehouse={warehouse}
-        productId={listParams.productId}
-        productName={historyProductName}
-        onClearProduct={() => listParams.setProductId(null)}
       />
 
       <AdjustStockDialog level={levelToAdjust} warehouse={warehouse} onClose={() => setLevelToAdjust(null)} />

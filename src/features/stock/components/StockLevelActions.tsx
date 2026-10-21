@@ -1,19 +1,23 @@
-import { Button } from '@/components/ui'
+import { Button, ButtonLink } from '@/components/ui'
 import type { StockLevel } from '../types'
 
 type StockLevelActionsProps = {
   level: StockLevel
+  warehouseId: number
   canAdjust: boolean
-  onShowHistory: (level: StockLevel) => void
   onAdjust: (level: StockLevel) => void
 }
 
-export function StockLevelActions({ level, canAdjust, onShowHistory, onAdjust }: StockLevelActionsProps) {
+export function StockLevelActions({ level, warehouseId, canAdjust, onAdjust }: StockLevelActionsProps) {
   return (
     <div className="flex justify-end gap-2">
-      <Button variant="ghost" className="px-3 py-1.5" onClick={() => onShowHistory(level)}>
+      <ButtonLink
+        to={`/admin/stock/history?warehouse=${warehouseId}&product=${level.productId}`}
+        variant="ghost"
+        className="px-3 py-1.5"
+      >
         History
-      </Button>
+      </ButtonLink>
       {canAdjust && (
         <Button variant="secondary" className="px-3 py-1.5" onClick={() => onAdjust(level)}>
           Adjust

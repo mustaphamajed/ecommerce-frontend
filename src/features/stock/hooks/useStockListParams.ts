@@ -20,10 +20,8 @@ export function useStockListParams(warehouses: Warehouse[], preferredWarehouseId
     ...params,
     warehouseId,
     lowStockOnly,
-    productId: parseId(params.get('product')),
     hasFilters: params.query !== '' || lowStockOnly,
-    setWarehouseId: (id: number) => params.update({ warehouse: String(id), product: null }),
+    setWarehouseId: (id: number) => params.update({ warehouse: String(id) }),
     setLowStockOnly: (enabled: boolean) => params.update({ low: enabled ? '1' : null }),
-    setProductId: (id: number | null) => params.update({ product: id === null ? null : String(id) }, false),
   }
 }

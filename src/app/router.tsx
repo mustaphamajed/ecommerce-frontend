@@ -7,7 +7,7 @@ import { DashboardPage } from '@/features/dashboard'
 import { NotFoundPage } from '@/features/errors'
 import { ProductCreatePage, ProductEditPage, ProductsPage } from '@/features/products'
 import { RoleCreatePage, RoleEditPage, RolesPage } from '@/features/roles'
-import { StockPage } from '@/features/stock'
+import { StockHistoryPage, StockPage } from '@/features/stock'
 import { UserCreatePage, UserEditPage, UsersPage } from '@/features/users'
 
 export const router = createBrowserRouter([
@@ -42,7 +42,10 @@ export const router = createBrowserRouter([
           },
           {
             element: <RequirePermission permission="stock:read" />,
-            children: [{ path: 'stock', element: <StockPage /> }],
+            children: [
+              { path: 'stock', element: <StockPage /> },
+              { path: 'stock/history', element: <StockHistoryPage /> },
+            ],
           },
           {
             element: <RequirePermission permission="user:read" />,

@@ -1,4 +1,5 @@
 export { MovementChange } from './components/MovementChange'
+export { StockHistoryPage } from './pages/StockHistoryPage'
 export { StockPage } from './pages/StockPage'
 export { reasonLabels } from './schemas/adjustStockSchema'
 export type { StockLevel, StockMovement } from './types'

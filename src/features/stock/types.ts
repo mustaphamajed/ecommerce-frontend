@@ -42,7 +42,7 @@ export type StockLevelParams = {
 }
 
 export type StockMovementParams = {
-  warehouseId: number
+  warehouseId: number | null
   productId: number | null
   page: number
 }

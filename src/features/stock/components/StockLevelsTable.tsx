@@ -11,15 +11,15 @@ import { StockQuantityBadge } from './StockQuantityBadge'
 type StockLevelsTableProps = {
   levels: StockLevel[]
   sort: SortState | null
+  warehouseId: number
   canAdjust: boolean
   onSort: (field: string) => void
-  onShowHistory: (level: StockLevel) => void
   onAdjust: (level: StockLevel) => void
 }
 
 const columnHelper = createColumnHelper<CoreTableFeatures, StockLevel>()
 
-export function StockLevelsTable({ levels, sort, canAdjust, onSort, onShowHistory, onAdjust }: StockLevelsTableProps) {
+export function StockLevelsTable({ levels, sort, warehouseId, canAdjust, onSort, onAdjust }: StockLevelsTableProps) {
   const columns = useMemo(
     () =>
       columnHelper.columns([
@@ -53,14 +53,14 @@ export function StockLevelsTable({ levels, sort, canAdjust, onSort, onShowHistor
           cell: ({ row }) => (
             <StockLevelActions
               level={row.original}
+              warehouseId={warehouseId}
               canAdjust={canAdjust}
-              onShowHistory={onShowHistory}
               onAdjust={onAdjust}
             />
           ),
         }),
       ]),
-    [sort, canAdjust, onSort, onShowHistory, onAdjust],
+    [sort, warehouseId, canAdjust, onSort, onAdjust],
   )
 
   return <DataTable columns={columns} data={levels} getRowId={(level) => String(level.productId)} />
