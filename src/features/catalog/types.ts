@@ -6,6 +6,7 @@ export type CatalogProduct = {
   price: number
   categoryName: string | null
   categorySlug: string | null
+  imageUrl: string | null
 }
 
 export type CatalogCategory = {

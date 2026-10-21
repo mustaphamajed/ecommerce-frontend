@@ -93,17 +93,24 @@ function send(path: string, options: RequestOptions): Promise<Response> {
   if (token) {
     headers.set('Authorization', `Bearer ${token}`)
   }
-  const hasBody = options.body !== undefined
-  if (hasBody) {
+  const isJsonBody = options.body !== undefined && !(options.body instanceof FormData)
+  if (isJsonBody) {
     headers.set('Content-Type', 'application/json')
   }
   return fetch(buildUrl(path, options.query), {
     method: options.method ?? 'GET',
     headers,
-    body: hasBody ? JSON.stringify(options.body) : undefined,
+    body: encodeBody(options.body),
     signal: options.signal,
     credentials: 'include',
   })
+}
+
+function encodeBody(body: unknown): BodyInit | undefined {
+  if (body === undefined || body instanceof FormData) {
+    return body
+  }
+  return JSON.stringify(body)
 }
 
 function buildUrl(path: string, query: Record<string, QueryValue> = {}): string {

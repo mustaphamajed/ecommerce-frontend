@@ -1,6 +1,6 @@
 import { createColumnHelper } from '@tanstack/react-table'
 import { useMemo } from 'react'
-import { DataTable, SortableHeader } from '@/components/ui'
+import { DataTable, ImageThumbnail, SortableHeader } from '@/components/ui'
 import { formatDate, formatPrice } from '@/lib/format'
 import type { SortState } from '@/lib/hooks/useListParams'
 import type { CoreTableFeatures } from '@/lib/table'
@@ -35,9 +35,12 @@ export function ProductsTable({
         columnHelper.accessor('name', {
           header: () => <SortableHeader label="Product" field="name" sort={sort} onSort={onSort} />,
           cell: ({ row }) => (
-            <div>
-              <p className="font-medium text-slate-900">{row.original.name}</p>
-              <p className="text-xs text-slate-400">{row.original.sku}</p>
+            <div className="flex items-center gap-3">
+              <ImageThumbnail src={row.original.imageUrl} alt={row.original.name} className="size-10 rounded-lg" />
+              <div>
+                <p className="font-medium text-slate-900">{row.original.name}</p>
+                <p className="text-xs text-slate-400">{row.original.sku}</p>
+              </div>
             </div>
           ),
         }),

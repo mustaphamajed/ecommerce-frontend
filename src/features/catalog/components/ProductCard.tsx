@@ -1,3 +1,4 @@
+import { ImageThumbnail } from '@/components/ui'
 import { formatPrice } from '@/lib/format'
 import type { CatalogProduct } from '../types'
 
@@ -8,9 +9,7 @@ type ProductCardProps = {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card transition hover:-translate-y-0.5 hover:shadow-md">
-      <div className="flex aspect-4/3 items-center justify-center bg-linear-to-br from-brand-50 to-slate-100 text-4xl font-semibold text-brand-300">
-        {product.name.charAt(0).toUpperCase()}
-      </div>
+      <ImageThumbnail src={product.imageUrl} alt={product.name} className="aspect-4/3 text-4xl" />
       <div className="flex flex-1 flex-col gap-2 p-4">
         {product.categoryName && (
           <span className="w-fit rounded-full bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">

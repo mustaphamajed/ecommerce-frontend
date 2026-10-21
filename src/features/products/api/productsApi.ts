@@ -29,6 +29,12 @@ export const productsApi = {
   update: (id: number, input: ProductInput) => api.put<Product>(`/products/${id}`, input),
   archive: (id: number) => api.post<Product>(`/products/${id}/archive`),
   restore: (id: number) => api.post<Product>(`/products/${id}/restore`),
+  uploadImage: (id: number, image: File) => {
+    const body = new FormData()
+    body.append('image', image)
+    return api.put<Product>(`/products/${id}/image`, body)
+  },
+  removeImage: (id: number) => api.delete<Product>(`/products/${id}/image`),
   categoryOptions: async (signal?: AbortSignal) => {
     const page = await api.get<PageResponse<CategoryOption>>('/categories', {
       query: { size: MAX_CATEGORY_OPTIONS, sort: 'name,asc' },

@@ -2,6 +2,7 @@ import { CircleHelp } from 'lucide-react'
 import { useNavigate, useParams } from 'react-router'
 import { ButtonLink, EmptyState, PageHeader, Spinner } from '@/components/ui'
 import { ProductForm } from '../components/ProductForm'
+import { ProductImageSection } from '../components/ProductImageSection'
 import { ProductStatusBadge } from '../components/ProductStatusBadge'
 import { useCategoryOptions } from '../hooks/useCategoryOptions'
 import { useProduct } from '../hooks/useProduct'
@@ -52,13 +53,16 @@ export function ProductEditPage() {
             />
           ),
           ready: product && (
-            <ProductForm
-              key={product.id}
-              defaultValues={toProductFormValues(product)}
-              categories={categoriesQuery.data ?? []}
-              submitLabel="Save changes"
-              onSubmit={handleSubmit}
-            />
+            <div className="flex flex-col gap-6">
+              <ProductImageSection product={product} />
+              <ProductForm
+                key={product.id}
+                defaultValues={toProductFormValues(product)}
+                categories={categoriesQuery.data ?? []}
+                submitLabel="Save changes"
+                onSubmit={handleSubmit}
+              />
+            </div>
           ),
         }[state]
       }

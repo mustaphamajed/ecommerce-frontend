@@ -12,8 +12,8 @@ export function ProductCreatePage() {
   const createProduct = useCreateProduct()
 
   const handleSubmit = async (values: ProductFormValues) => {
-    await createProduct.mutateAsync(toProductInput(values))
-    navigate('/admin/products')
+    const product = await createProduct.mutateAsync(toProductInput(values))
+    navigate(`/admin/products/${product.id}/edit`)
   }
 
   const state = categoriesQuery.isPending ? 'loading' : categoriesQuery.isError ? 'error' : 'ready'

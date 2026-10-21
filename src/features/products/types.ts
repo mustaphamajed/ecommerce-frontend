@@ -11,6 +11,7 @@ export type Product = {
   status: ProductStatus
   categoryId: number | null
   categoryName: string | null
+  imageUrl: string | null
   createdAt: string
   updatedAt: string
 }
