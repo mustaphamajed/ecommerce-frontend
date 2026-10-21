@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
-import { Alert, ButtonLink, PageHeader, Pagination, SearchForm } from '@/components/ui'
+import { ButtonLink, PageHeader, Pagination, SearchForm } from '@/components/ui'
 import { useAuth } from '@/features/auth'
 import { DisableUserDialog } from '../components/DisableUserDialog'
 import { UsersResults } from '../components/UsersResults'
@@ -47,8 +47,6 @@ export function UsersPage() {
         />
         <UserStatusFilter value={listParams.status} onChange={listParams.setStatus} />
       </div>
-
-      {enableUser.error && <Alert>{enableUser.error.message}</Alert>}
 
       <UsersResults
         users={usersQuery.data?.content ?? []}

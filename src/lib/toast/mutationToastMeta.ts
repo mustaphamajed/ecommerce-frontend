@@ -1,6 +1,5 @@
 export type MutationToastMeta = {
-  successMessage?: string
-  errorMessage?: string
+  errorToast?: boolean
 }
 
 declare module '@tanstack/react-query' {

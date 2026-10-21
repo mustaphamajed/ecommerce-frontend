@@ -19,7 +19,7 @@ export function ResetPasswordForm({ onSubmit }: ResetPasswordFormProps) {
     handleSubmit,
     setError,
     reset,
-    formState: { errors, isSubmitting, isDirty, isSubmitSuccessful },
+    formState: { errors, isSubmitting, isDirty },
   } = useForm<ResetPasswordFormValues>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: emptyResetPasswordForm,
@@ -28,7 +28,7 @@ export function ResetPasswordForm({ onSubmit }: ResetPasswordFormProps) {
   const submit = handleSubmit(async ({ password }) => {
     try {
       await onSubmit(password)
-      reset(emptyResetPasswordForm, { keepIsSubmitSuccessful: true })
+      reset(emptyResetPasswordForm)
     } catch (error) {
       applyServerErrors(error, setError, resetPasswordFormFields)
     }
@@ -37,9 +37,6 @@ export function ResetPasswordForm({ onSubmit }: ResetPasswordFormProps) {
   return (
     <form noValidate onSubmit={submit} className="flex flex-col gap-5">
       {errors.root?.server && <Alert>{errors.root.server.message}</Alert>}
-      {isSubmitSuccessful && !isDirty && !errors.root && (
-        <Alert variant="success">Password changed. Share the new password with the user securely.</Alert>
-      )}
       <div className="grid gap-5 sm:grid-cols-2">
         <TextField
           label="New password"

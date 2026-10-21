@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
-import { Alert, ButtonLink, PageHeader, Pagination, SearchForm } from '@/components/ui'
+import { ButtonLink, PageHeader, Pagination, SearchForm } from '@/components/ui'
 import { useAuth } from '@/features/auth'
 import { ArchiveProductDialog } from '../components/ArchiveProductDialog'
 import { ProductFilters } from '../components/ProductFilters'
@@ -56,8 +56,6 @@ export function ProductsPage() {
           onCategoryChange={listParams.setCategoryId}
         />
       </div>
-
-      {restoreProduct.error && <Alert>{restoreProduct.error.message}</Alert>}
 
       <ProductsResults
         products={productsQuery.data?.content ?? []}

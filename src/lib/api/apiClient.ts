@@ -1,3 +1,4 @@
+import { toast } from '@/lib/toast/toastStore'
 import { ApiError } from './ApiError'
 import { tokenStore } from './tokenStore'
 
@@ -14,6 +15,7 @@ export type RequestOptions = {
 }
 
 const API_BASE = '/api'
+const MESSAGE_HEADER = 'X-Message'
 
 let refreshInFlight: Promise<boolean> | null = null
 let sessionExpiredHandler: (() => void) | null = null
@@ -44,6 +46,7 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
   if (!response.ok) {
     throw await ApiError.fromResponse(response)
   }
+  showServerMessage(response)
   if (response.status === 204) {
     return undefined as T
   }
@@ -74,6 +77,13 @@ async function requestNewAccessToken(): Promise<boolean> {
   } catch {
     tokenStore.clear()
     return false
+  }
+}
+
+function showServerMessage(response: Response) {
+  const encodedMessage = response.headers.get(MESSAGE_HEADER)
+  if (encodedMessage) {
+    toast.success(decodeURIComponent(encodedMessage))
   }
 }
 

@@ -24,7 +24,7 @@ export function UserAccessForm({ user, roles, warehouses, onSubmit }: UserAccess
     handleSubmit,
     setError,
     reset,
-    formState: { errors, isSubmitting, isDirty, isSubmitSuccessful },
+    formState: { errors, isSubmitting, isDirty },
   } = useForm<UserAccessFormValues>({
     resolver: zodResolver(userAccessSchema),
     defaultValues: toUserAccessFormValues(user),
@@ -35,7 +35,7 @@ export function UserAccessForm({ user, roles, warehouses, onSubmit }: UserAccess
   const submit = handleSubmit(async (values) => {
     try {
       await onSubmit(values)
-      reset(values, { keepIsSubmitSuccessful: true })
+      reset(values)
     } catch (error) {
       applyServerErrors(error, setError, userAccessFormFields)
     }
@@ -44,7 +44,6 @@ export function UserAccessForm({ user, roles, warehouses, onSubmit }: UserAccess
   return (
     <form noValidate onSubmit={submit} className="flex flex-col gap-5">
       {errors.root?.server && <Alert>{errors.root.server.message}</Alert>}
-      {isSubmitSuccessful && !isDirty && !errors.root && <Alert variant="success">Access saved.</Alert>}
       <AccessFields
         roles={roles}
         warehouses={warehouses}
