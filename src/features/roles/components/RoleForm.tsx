@@ -49,7 +49,7 @@ export function RoleForm({
     <form
       noValidate
       onSubmit={submit}
-      className="flex max-w-3xl flex-col gap-5 rounded-xl border border-slate-200 bg-white p-6 shadow-xs"
+      className="flex max-w-3xl flex-col gap-5 rounded-xl border border-slate-200 bg-white p-6 shadow-card"
     >
       {errors.root?.server && <Alert>{errors.root.server.message}</Alert>}
       <TextField

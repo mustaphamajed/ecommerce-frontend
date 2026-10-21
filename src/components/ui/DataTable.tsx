@@ -11,13 +11,17 @@ export function DataTable<TData extends RowData>({ columns, data, getRowId }: Da
   const table = useTable({ features: coreTableFeatures, columns, data, getRowId: (row) => getRowId(row) })
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-xs">
+    <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-card">
       <table className="min-w-full divide-y divide-slate-200 text-sm">
-        <thead className="bg-slate-50">
+        <thead className="bg-slate-50/80">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id} scope="col" className="px-4 py-3 text-left font-medium text-slate-600">
+                <th
+                  key={header.id}
+                  scope="col"
+                  className="px-4 py-3 text-left text-xs font-semibold tracking-wide whitespace-nowrap text-slate-500 uppercase"
+                >
                   {!header.isPlaceholder && <table.FlexRender header={header} />}
                 </th>
               ))}
@@ -26,9 +30,9 @@ export function DataTable<TData extends RowData>({ columns, data, getRowId }: Da
         </thead>
         <tbody className="divide-y divide-slate-100">
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="hover:bg-slate-50">
+            <tr key={row.id} className="transition-colors hover:bg-slate-50/70">
               {row.getAllCells().map((cell) => (
-                <td key={cell.id} className="px-4 py-3 align-middle text-slate-700">
+                <td key={cell.id} className="px-4 py-3.5 align-middle text-slate-700">
                   <table.FlexRender cell={cell} />
                 </td>
               ))}

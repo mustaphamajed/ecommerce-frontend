@@ -1,4 +1,5 @@
 import type { ComponentProps } from 'react'
+import { cn } from '@/lib/cn'
 import { buttonClasses, type ButtonVariant } from './buttonStyles'
 import { Spinner } from './Spinner'
 
@@ -20,7 +21,7 @@ export function Button({
     <button
       type={type}
       disabled={disabled || isLoading}
-      className={buttonClasses(variant, className)}
+      className={buttonClasses(variant, cn(isLoading && '[&>svg]:hidden', className))}
       {...props}
     >
       {isLoading && <Spinner className="size-4" />}

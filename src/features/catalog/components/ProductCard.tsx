@@ -7,7 +7,7 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs transition hover:shadow-md">
+    <article className="flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card transition hover:-translate-y-0.5 hover:shadow-md">
       <div className="flex aspect-4/3 items-center justify-center bg-linear-to-br from-brand-50 to-slate-100 text-4xl font-semibold text-brand-300">
         {product.name.charAt(0).toUpperCase()}
       </div>

@@ -17,8 +17,8 @@ export function SortableHeader({ label, field, sort, onSort }: SortableHeaderPro
     <button
       type="button"
       onClick={() => onSort(field)}
-      aria-sort={direction === 'none' ? undefined : direction === 'asc' ? 'ascending' : 'descending'}
-      className="inline-flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900"
+      aria-label={`Sort by ${label}`}
+      className="inline-flex items-center gap-1 uppercase transition hover:text-slate-900"
     >
       {label}
       <span aria-hidden="true" className={cn('text-xs', direction === 'none' ? 'text-slate-300' : 'text-brand-600')}>
