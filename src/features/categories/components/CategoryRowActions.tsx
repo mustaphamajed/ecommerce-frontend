@@ -1,3 +1,4 @@
+import { Pencil, Trash2 } from 'lucide-react'
 import { Button, ButtonLink } from '@/components/ui'
 import type { Category } from '../types'
 
@@ -12,6 +13,7 @@ export function CategoryRowActions({ category, onDelete }: CategoryRowActionsPro
   return (
     <div className="flex justify-end gap-2">
       <ButtonLink to={`/admin/categories/${category.id}/edit`} variant="ghost" className="px-3 py-1.5">
+        <Pencil aria-hidden="true" className="size-3.5" />
         Edit
       </ButtonLink>
       <Button
@@ -21,6 +23,7 @@ export function CategoryRowActions({ category, onDelete }: CategoryRowActionsPro
         title={hasProducts ? 'Remove or move its products first' : undefined}
         onClick={() => onDelete(category)}
       >
+        <Trash2 aria-hidden="true" className="size-3.5" />
         Delete
       </Button>
     </div>

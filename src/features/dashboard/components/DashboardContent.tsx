@@ -1,3 +1,4 @@
+import { LayoutDashboard } from 'lucide-react'
 import { EmptyState } from '@/components/ui'
 import type { Dashboard } from '../types'
 import { DashboardStats } from './DashboardStats'
@@ -25,6 +26,10 @@ export function DashboardContent({ dashboard }: DashboardContentProps) {
       )}
     </div>
   ) : (
-    <EmptyState title="Nothing to show yet" description="Your role doesn't include any dashboard section." />
+    <EmptyState
+      icon={LayoutDashboard}
+      title="Nothing to show yet"
+      description="Your role doesn't include any dashboard section."
+    />
   )
 }

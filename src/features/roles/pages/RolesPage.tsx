@@ -1,3 +1,4 @@
+import { Plus, TriangleAlert } from 'lucide-react'
 import { useState } from 'react'
 import { Button, ButtonLink, EmptyState, PageHeader, Spinner } from '@/components/ui'
 import { useAuth } from '@/features/auth'
@@ -18,7 +19,14 @@ export function RolesPage() {
       <PageHeader
         title="Roles"
         description="Group permissions into roles, then assign roles to users."
-        actions={canManage && <ButtonLink to="/admin/roles/new">New role</ButtonLink>}
+        actions={
+          canManage && (
+            <ButtonLink to="/admin/roles/new">
+              <Plus aria-hidden="true" className="size-4" />
+              New role
+            </ButtonLink>
+          )
+        }
       />
       {
         {
@@ -29,6 +37,7 @@ export function RolesPage() {
           ),
           error: (
             <EmptyState
+              icon={TriangleAlert}
               title="We couldn't load the roles"
               action={<Button onClick={() => rolesQuery.refetch()}>Try again</Button>}
             />

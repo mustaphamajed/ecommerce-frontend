@@ -1,3 +1,4 @@
+import { CircleHelp } from 'lucide-react'
 import { useNavigate, useParams } from 'react-router'
 import { ButtonLink, EmptyState, PageHeader, Spinner } from '@/components/ui'
 import { CategoryForm } from '../components/CategoryForm'
@@ -31,6 +32,7 @@ export function CategoryEditPage() {
           ),
           error: (
             <EmptyState
+              icon={CircleHelp}
               title="Category not found"
               description="It may have been deleted."
               action={

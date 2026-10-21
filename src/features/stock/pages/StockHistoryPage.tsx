@@ -1,4 +1,4 @@
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, TriangleAlert } from 'lucide-react'
 import { Button, ButtonLink, EmptyState, PageHeader, Spinner } from '@/components/ui'
 import { StockHistoryWorkspace } from '../components/StockHistoryWorkspace'
 import { useStockWarehouses } from '../hooks/useStockWarehouses'
@@ -28,6 +28,7 @@ export function StockHistoryPage() {
           ),
           error: (
             <EmptyState
+              icon={TriangleAlert}
               title="We couldn't load the warehouses"
               action={<Button onClick={() => warehousesQuery.refetch()}>Try again</Button>}
             />

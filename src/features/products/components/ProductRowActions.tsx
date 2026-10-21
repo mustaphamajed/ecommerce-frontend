@@ -1,3 +1,4 @@
+import { Archive, ArchiveRestore, Pencil } from 'lucide-react'
 import { Button, ButtonLink } from '@/components/ui'
 import type { Product } from '../types'
 
@@ -12,6 +13,7 @@ export function ProductRowActions({ product, isRestoring, onArchive, onRestore }
   return (
     <div className="flex justify-end gap-2">
       <ButtonLink to={`/admin/products/${product.id}/edit`} variant="ghost" className="px-3 py-1.5">
+        <Pencil aria-hidden="true" className="size-3.5" />
         Edit
       </ButtonLink>
       {product.status === 'ACTIVE' ? (
@@ -20,6 +22,7 @@ export function ProductRowActions({ product, isRestoring, onArchive, onRestore }
           className="px-3 py-1.5 text-amber-700 hover:bg-amber-50 hover:text-amber-800"
           onClick={() => onArchive(product)}
         >
+          <Archive aria-hidden="true" className="size-3.5" />
           Archive
         </Button>
       ) : (
@@ -29,6 +32,7 @@ export function ProductRowActions({ product, isRestoring, onArchive, onRestore }
           isLoading={isRestoring}
           onClick={() => onRestore(product)}
         >
+          <ArchiveRestore aria-hidden="true" className="size-3.5" />
           Restore
         </Button>
       )}

@@ -1,3 +1,4 @@
+import { Pencil, UserCheck, UserX } from 'lucide-react'
 import { Button, ButtonLink } from '@/components/ui'
 import type { User } from '../types'
 
@@ -13,6 +14,7 @@ export function UserRowActions({ user, isCurrentUser, isEnabling, onEnable, onDi
   return (
     <div className="flex justify-end gap-2">
       <ButtonLink to={`/admin/users/${user.id}/edit`} variant="ghost" className="px-3 py-1.5">
+        <Pencil aria-hidden="true" className="size-3.5" />
         Edit
       </ButtonLink>
       {!isCurrentUser &&
@@ -22,6 +24,7 @@ export function UserRowActions({ user, isCurrentUser, isEnabling, onEnable, onDi
             className="px-3 py-1.5 text-red-600 hover:bg-red-50 hover:text-red-700"
             onClick={() => onDisable(user)}
           >
+            <UserX aria-hidden="true" className="size-3.5" />
             Disable
           </Button>
         ) : (
@@ -31,6 +34,7 @@ export function UserRowActions({ user, isCurrentUser, isEnabling, onEnable, onDi
             isLoading={isEnabling}
             onClick={() => onEnable(user)}
           >
+            <UserCheck aria-hidden="true" className="size-3.5" />
             Enable
           </Button>
         ))}

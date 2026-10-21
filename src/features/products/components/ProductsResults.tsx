@@ -1,3 +1,4 @@
+import { Package, SearchX, TriangleAlert } from 'lucide-react'
 import type { ComponentProps } from 'react'
 import { Button, EmptyState, Spinner } from '@/components/ui'
 import type { Product } from '../types'
@@ -31,9 +32,16 @@ export function ProductsResults({
         <Spinner className="size-8" />
       </div>
     ),
-    error: <EmptyState title="We couldn't load the products" action={<Button onClick={onRetry}>Try again</Button>} />,
+    error: (
+      <EmptyState
+        icon={TriangleAlert}
+        title="We couldn't load the products"
+        action={<Button onClick={onRetry}>Try again</Button>}
+      />
+    ),
     noMatch: (
       <EmptyState
+        icon={SearchX}
         title="No products match your filters"
         action={
           <Button variant="secondary" onClick={onClearFilters}>
@@ -42,7 +50,9 @@ export function ProductsResults({
         }
       />
     ),
-    empty: <EmptyState title="No products yet" description="Create your first product to fill the catalog." />,
+    empty: (
+      <EmptyState icon={Package} title="No products yet" description="Create your first product to fill the catalog." />
+    ),
     ready: <ProductsTable products={products} {...tableProps} />,
   }[state]
 }

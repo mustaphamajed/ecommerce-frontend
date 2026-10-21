@@ -1,3 +1,4 @@
+import { CircleHelp } from 'lucide-react'
 import { useNavigate, useParams } from 'react-router'
 import { ButtonLink, EmptyState, PageHeader, Spinner } from '@/components/ui'
 import { ProductForm } from '../components/ProductForm'
@@ -41,6 +42,7 @@ export function ProductEditPage() {
           ),
           error: (
             <EmptyState
+              icon={CircleHelp}
               title="Product not found"
               action={
                 <ButtonLink to="/admin/products" variant="secondary">

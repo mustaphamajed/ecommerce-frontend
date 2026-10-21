@@ -1,3 +1,4 @@
+import { Pencil, Trash2 } from 'lucide-react'
 import { Button, ButtonLink } from '@/components/ui'
 import type { Role } from '../types'
 
@@ -19,6 +20,7 @@ export function RoleRowActions({ role, onDelete }: RoleRowActionsProps) {
   return (
     <div className="flex justify-end gap-2">
       <ButtonLink to={`/admin/roles/${role.id}/edit`} variant="ghost" className="px-3 py-1.5">
+        <Pencil aria-hidden="true" className="size-3.5" />
         Edit
       </ButtonLink>
       <Button
@@ -28,6 +30,7 @@ export function RoleRowActions({ role, onDelete }: RoleRowActionsProps) {
         title={blockedReason}
         onClick={() => onDelete(role)}
       >
+        <Trash2 aria-hidden="true" className="size-3.5" />
         Delete
       </Button>
     </div>

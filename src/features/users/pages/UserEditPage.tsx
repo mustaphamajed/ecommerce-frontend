@@ -1,3 +1,4 @@
+import { CircleHelp } from 'lucide-react'
 import { useParams } from 'react-router'
 import { ButtonLink, EmptyState, FormSection, PageHeader, Spinner } from '@/components/ui'
 import { ResetPasswordForm } from '../components/ResetPasswordForm'
@@ -42,6 +43,7 @@ export function UserEditPage() {
           ),
           error: (
             <EmptyState
+              icon={CircleHelp}
               title="User not found"
               action={
                 <ButtonLink to="/admin/users" variant="secondary">

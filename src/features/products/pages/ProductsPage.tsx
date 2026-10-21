@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react'
 import { useState } from 'react'
 import { Alert, ButtonLink, PageHeader, Pagination, SearchForm } from '@/components/ui'
 import { useAuth } from '@/features/auth'
@@ -30,7 +31,14 @@ export function ProductsPage() {
       <PageHeader
         title="Products"
         description="Manage the products shown in your store."
-        actions={canWrite && <ButtonLink to="/admin/products/new">New product</ButtonLink>}
+        actions={
+          canWrite && (
+            <ButtonLink to="/admin/products/new">
+              <Plus aria-hidden="true" className="size-4" />
+              New product
+            </ButtonLink>
+          )
+        }
       />
 
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center">

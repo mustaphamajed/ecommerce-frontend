@@ -1,3 +1,4 @@
+import { CircleHelp } from 'lucide-react'
 import { useNavigate, useParams } from 'react-router'
 import { Badge, ButtonLink, EmptyState, PageHeader, Spinner } from '@/components/ui'
 import type { Permission } from '@/features/auth'
@@ -44,6 +45,7 @@ export function RoleEditPage() {
           ),
           error: (
             <EmptyState
+              icon={CircleHelp}
               title="Role not found"
               action={
                 <ButtonLink to="/admin/roles" variant="secondary">

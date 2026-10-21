@@ -1,3 +1,4 @@
+import { Package, SearchX, TriangleAlert } from 'lucide-react'
 import { Button, EmptyState, Spinner } from '@/components/ui'
 import type { CatalogProduct } from '../types'
 import { ProductGrid } from './ProductGrid'
@@ -31,6 +32,7 @@ export function CatalogResults({
     ),
     error: (
       <EmptyState
+        icon={TriangleAlert}
         title="We couldn't load the products"
         description="Please check your connection and try again."
         action={<Button onClick={onRetry}>Try again</Button>}
@@ -38,6 +40,7 @@ export function CatalogResults({
     ),
     noMatch: (
       <EmptyState
+        icon={SearchX}
         title="No products match your search"
         description="Try another search or category."
         action={
@@ -47,7 +50,13 @@ export function CatalogResults({
         }
       />
     ),
-    empty: <EmptyState title="No products yet" description="New products will appear here soon. Come back later!" />,
+    empty: (
+      <EmptyState
+        icon={Package}
+        title="No products yet"
+        description="New products will appear here soon. Come back later!"
+      />
+    ),
     ready: <ProductGrid products={products} />,
   }[state]
 }

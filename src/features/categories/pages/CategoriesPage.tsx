@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react'
 import { useState } from 'react'
 import { ButtonLink, PageHeader, Pagination, SearchForm } from '@/components/ui'
 import { useAuth } from '@/features/auth'
@@ -19,7 +20,14 @@ export function CategoriesPage() {
       <PageHeader
         title="Categories"
         description="Organize your products into categories."
-        actions={canWrite && <ButtonLink to="/admin/categories/new">New category</ButtonLink>}
+        actions={
+          canWrite && (
+            <ButtonLink to="/admin/categories/new">
+              <Plus aria-hidden="true" className="size-4" />
+              New category
+            </ButtonLink>
+          )
+        }
       />
 
       <SearchForm

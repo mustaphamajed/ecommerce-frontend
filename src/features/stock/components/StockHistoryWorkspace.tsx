@@ -1,3 +1,4 @@
+import { History, TriangleAlert } from 'lucide-react'
 import { Button, EmptyState, Pagination, Spinner } from '@/components/ui'
 import { useStockHistoryParams } from '../hooks/useStockHistoryParams'
 import { useStockMovements } from '../hooks/useStockMovements'
@@ -34,11 +35,7 @@ export function StockHistoryWorkspace({ warehouses }: StockHistoryWorkspaceProps
   return (
     <>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <HistoryWarehouseFilter
-          warehouses={warehouses}
-          value={params.warehouseId}
-          onChange={params.setWarehouseId}
-        />
+        <HistoryWarehouseFilter warehouses={warehouses} value={params.warehouseId} onChange={params.setWarehouseId} />
         {productName && (
           <div className="flex items-center gap-2 rounded-lg border border-brand-200 bg-brand-50 py-1.5 pr-1.5 pl-3 text-sm text-brand-700">
             Product: <strong className="font-medium">{productName}</strong>
@@ -58,20 +55,19 @@ export function StockHistoryWorkspace({ warehouses }: StockHistoryWorkspaceProps
           ),
           error: (
             <EmptyState
+              icon={TriangleAlert}
               title="We couldn't load the history"
               action={<Button onClick={() => movementsQuery.refetch()}>Try again</Button>}
             />
           ),
-          empty: <EmptyState title="No movements yet" description="Stock adjustments will appear here." />,
+          empty: (
+            <EmptyState icon={History} title="No movements yet" description="Stock adjustments will appear here." />
+          ),
           ready: <StockMovementsTable movements={movements} />,
         }[historyState(movements, movementsQuery.isPending, movementsQuery.isError)]
       }
 
-      <Pagination
-        page={params.page}
-        totalPages={movementsQuery.data?.totalPages ?? 0}
-        onPageChange={params.setPage}
-      />
+      <Pagination page={params.page} totalPages={movementsQuery.data?.totalPages ?? 0} onPageChange={params.setPage} />
     </>
   )
 }

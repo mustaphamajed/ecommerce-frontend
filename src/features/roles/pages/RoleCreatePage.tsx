@@ -1,3 +1,4 @@
+import { TriangleAlert } from 'lucide-react'
 import { useNavigate } from 'react-router'
 import { Button, EmptyState, PageHeader, Spinner } from '@/components/ui'
 import { RoleForm } from '../components/RoleForm'
@@ -29,6 +30,7 @@ export function RoleCreatePage() {
           ),
           error: (
             <EmptyState
+              icon={TriangleAlert}
               title="We couldn't load the permissions"
               action={<Button onClick={() => permissionsQuery.refetch()}>Try again</Button>}
             />

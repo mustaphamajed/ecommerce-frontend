@@ -1,3 +1,4 @@
+import { SearchX, Tags, TriangleAlert } from 'lucide-react'
 import { Button, EmptyState, Spinner } from '@/components/ui'
 import type { SortState } from '@/lib/hooks/useListParams'
 import type { Category } from '../types'
@@ -40,12 +41,14 @@ export function CategoriesResults({
     ),
     error: (
       <EmptyState
+        icon={TriangleAlert}
         title="We couldn't load the categories"
         action={<Button onClick={onRetry}>Try again</Button>}
       />
     ),
     noMatch: (
       <EmptyState
+        icon={SearchX}
         title="No categories match your search"
         action={
           <Button variant="secondary" onClick={onClearSearch}>
@@ -54,19 +57,20 @@ export function CategoriesResults({
         }
       />
     ),
-    empty: <EmptyState title="No categories yet" description="Create your first category to organize products." />,
+    empty: (
+      <EmptyState
+        icon={Tags}
+        title="No categories yet"
+        description="Create your first category to organize products."
+      />
+    ),
     ready: (
       <CategoriesTable categories={categories} sort={sort} canWrite={canWrite} onSort={onSort} onDelete={onDelete} />
     ),
   }[state]
 }
 
-function resultsState(
-  categories: Category[],
-  isLoading: boolean,
-  isError: boolean,
-  hasSearch: boolean,
-): ResultsState {
+function resultsState(categories: Category[], isLoading: boolean, isError: boolean, hasSearch: boolean): ResultsState {
   if (isLoading) {
     return 'loading'
   }

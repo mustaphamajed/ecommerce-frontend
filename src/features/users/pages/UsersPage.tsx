@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react'
 import { useState } from 'react'
 import { Alert, ButtonLink, PageHeader, Pagination, SearchForm } from '@/components/ui'
 import { useAuth } from '@/features/auth'
@@ -27,7 +28,14 @@ export function UsersPage() {
       <PageHeader
         title="Users"
         description="Manage who can access the admin panel and what they can do."
-        actions={canManage && <ButtonLink to="/admin/users/new">New user</ButtonLink>}
+        actions={
+          canManage && (
+            <ButtonLink to="/admin/users/new">
+              <Plus aria-hidden="true" className="size-4" />
+              New user
+            </ButtonLink>
+          )
+        }
       />
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">

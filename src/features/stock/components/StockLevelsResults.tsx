@@ -1,3 +1,4 @@
+import { Package, SearchX, TriangleAlert } from 'lucide-react'
 import type { ComponentProps } from 'react'
 import { Button, EmptyState, Spinner } from '@/components/ui'
 import type { StockLevel } from '../types'
@@ -31,9 +32,16 @@ export function StockLevelsResults({
         <Spinner className="size-8" />
       </div>
     ),
-    error: <EmptyState title="We couldn't load the stock" action={<Button onClick={onRetry}>Try again</Button>} />,
+    error: (
+      <EmptyState
+        icon={TriangleAlert}
+        title="We couldn't load the stock"
+        action={<Button onClick={onRetry}>Try again</Button>}
+      />
+    ),
     noMatch: (
       <EmptyState
+        icon={SearchX}
         title="No products match your filters"
         action={
           <Button variant="secondary" onClick={onClearFilters}>
@@ -42,7 +50,13 @@ export function StockLevelsResults({
         }
       />
     ),
-    empty: <EmptyState title="No active products" description="Create products to start tracking their stock." />,
+    empty: (
+      <EmptyState
+        icon={Package}
+        title="No active products"
+        description="Create products to start tracking their stock."
+      />
+    ),
     ready: <StockLevelsTable levels={levels} {...tableProps} />,
   }[state]
 }

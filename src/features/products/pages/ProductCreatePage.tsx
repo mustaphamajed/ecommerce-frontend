@@ -1,3 +1,4 @@
+import { TriangleAlert } from 'lucide-react'
 import { useNavigate } from 'react-router'
 import { Button, EmptyState, PageHeader, Spinner } from '@/components/ui'
 import { ProductForm } from '../components/ProductForm'
@@ -29,6 +30,7 @@ export function ProductCreatePage() {
           ),
           error: (
             <EmptyState
+              icon={TriangleAlert}
               title="We couldn't load the categories"
               action={<Button onClick={() => categoriesQuery.refetch()}>Try again</Button>}
             />

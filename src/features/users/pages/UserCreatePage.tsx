@@ -1,3 +1,4 @@
+import { TriangleAlert } from 'lucide-react'
 import { useNavigate } from 'react-router'
 import { Button, EmptyState, PageHeader, Spinner } from '@/components/ui'
 import { CreateUserForm } from '../components/CreateUserForm'
@@ -33,6 +34,7 @@ export function UserCreatePage() {
           ),
           error: (
             <EmptyState
+              icon={TriangleAlert}
               title="We couldn't load roles and warehouses"
               action={
                 <Button

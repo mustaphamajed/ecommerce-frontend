@@ -1,3 +1,4 @@
+import { SearchX, TriangleAlert } from 'lucide-react'
 import type { ComponentProps } from 'react'
 import { Button, EmptyState, Spinner } from '@/components/ui'
 import type { User } from '../types'
@@ -31,9 +32,16 @@ export function UsersResults({
         <Spinner className="size-8" />
       </div>
     ),
-    error: <EmptyState title="We couldn't load the users" action={<Button onClick={onRetry}>Try again</Button>} />,
+    error: (
+      <EmptyState
+        icon={TriangleAlert}
+        title="We couldn't load the users"
+        action={<Button onClick={onRetry}>Try again</Button>}
+      />
+    ),
     noMatch: (
       <EmptyState
+        icon={SearchX}
         title="No users match your filters"
         action={
           <Button variant="secondary" onClick={onClearFilters}>
