@@ -12,6 +12,7 @@ const resourceLabels: Record<string, string> = {
   user: 'Users',
   role: 'Roles',
   audit: 'Audit log',
+  system: 'System',
 }
 
 const actionLabels: Record<string, string> = {
@@ -19,6 +20,7 @@ const actionLabels: Record<string, string> = {
   write: 'Create & edit',
   adjust: 'Adjust quantities',
   manage: 'Manage',
+  monitor: 'Monitor health & metrics',
 }
 
 export function permissionLabel(permission: Permission): string {

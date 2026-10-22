@@ -7,6 +7,7 @@ export type Permission =
   | 'user:manage'
   | 'role:manage'
   | 'audit:read'
+  | 'system:monitor'
 
 export type CurrentUser = {
   id: number
