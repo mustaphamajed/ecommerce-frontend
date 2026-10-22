@@ -7,6 +7,7 @@ export type CatalogProduct = {
   categoryName: string | null
   categorySlug: string | null
   imageUrl: string | null
+  inStock: boolean
 }
 
 export type CatalogCategory = {
